@@ -1,0 +1,26 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{%block style %}   
+body {
+    {% comment %} background:url({% static 'images/pic6.JPG' %}) no-repeat fixed; {% endcomment %}
+    background-size: 100% 100%;
+    color: white;
+}
+
+.op{
+    background:rgba(0,0,0,.6);
+    border-radius:20px;
+    padding: 10px;
+}
+{%endblock style%}
+ {% block content %}
+ <div class="wrapper">
+    <form class='op'>
+    <table class='table table-hover'>
+        <tr><th>Name :</th><td> {{user.username}}</td></h2></tr>
+        <tr><th>Email Id: </th><td>{{user.email}}</td></h2></tr>
+        <tr><th>Password:</th><td>*****
+         {% comment %} {{user.password}} {% endcomment %}
+        </td></h2></tr>
+    </table></form>
+{% endblock %}

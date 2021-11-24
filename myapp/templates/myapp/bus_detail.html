@@ -1,0 +1,32 @@
+{% extends 'myapp/base.html' %}
+{%load static%}
+{% comment %} {%block style %}
+.op{
+    background:rgba(0,0,0,.5);
+    border-radius:20px;
+}
+{%endblock style%} {% endcomment %}
+{% block content %}
+            
+       <div class="wrapper">
+    <form class='op'>
+    <table class="table table-hover">
+        <tr><th>Bus Name :</th><td> {{post.bus_name.title}}</td></h2></tr>
+        <tr><th>Source :</th><td> {{post.source.title}}</td></h2></tr>
+        <tr><th>Destination: </th><td>{{post.dest.title}}</td></h2></tr>
+        <tr><th>Date: </th><td>{{post.date}}</td></h2></tr>
+        <tr><th>Price:</th><td> {{post.price}}</td></h2></tr>
+        <tr><th>Time:</th><td> {{post.time}}</td></h2></tr>
+        <tr><th>No of Seats:</th><td> {{post.nos}}</td></h2></tr>
+        <tr><th>Remaining Seats: </th><td>{{post.rem}}</td></h2></tr>
+        
+        <aside class="actions">
+    {% if user.is_authenticated and user.is_superuser %}
+    <tr><th> </th><td><a class="btn btn-default" href="{% url 'bus_edit' pk=post.pk %}">
+      edit
+    </a></td></tr>
+    {% endif %}
+</aside>
+        
+    </article>
+{% endblock content %}

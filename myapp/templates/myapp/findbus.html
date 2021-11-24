@@ -1,0 +1,108 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% comment %} {%block style %}   
+body {
+    background-size: 100% 100%;
+    color: white;
+}
+.op{
+    background:rgba(0,0,0,.6);
+    border-radius:20px;
+    padding: 10px;
+}
+{%endblock style%}
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto op" style="margin-top: 70px">
+                <h2>Find bus</h2>
+                <form action="{% url 'findbus' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Source</label>
+                        <div class="col-10">
+                            <input name='source' class="form-control" type="text" id="example-email-input">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Destination</label>
+                        <div class="col-10">
+                            <input name='destination' class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label" >Date</label>
+                        <div class="col-10">
+                            <input name='date' class="form-control" type="date">
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary float-right">Find bus</button>
+                    </div>
+                    {{error}}
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %} {% endcomment %}
+
+
+
+{% block content %}
+<body class="bg-theme bg-theme2">
+	<!--wrapper-->
+	<div class="wrapper">
+		<div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
+			<div class="container-fluid">
+				<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+					<div class="col mx-auto">
+						<div class="mb-4 text-center">
+							<img src="{% static 'assets/images/logo-img.png'%}" width="180" alt="" />
+						</div>
+						<div class="card">
+							<div class="card-body">
+								<div class="border p-4 rounded">
+								
+									<div class="form-body">
+										<form class="row g-3" action="{% url 'findbus' %}" method="post">
+                                        {% csrf_token %}
+											<div class="col-12">
+												<label for="inputEmailAddress" class="form-label"> Source</label>
+                            <input name='source' class="form-control" type="text" id="example-email-input" required>
+											</div>
+											<div class="col-12">
+												<label for="name" class="form-label"> Destination</label>
+                            <input name='destination' class="form-control" type="text" required>
+                            
+                        
+											</div>
+											<div class="col-12">
+												<label for="" class="form-label">Date</label>
+												<div class="input-group" id="show_hide_password">
+                            <input name='date' class="form-control" type="date" required>
+												</div>
+											</div>
+							
+											
+											<div class="col-12">
+												<div class="d-grid">
+													<button type="submit" class="btn btn-light"><i class=""></i>Find bus</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end row-->
+			</div>
+		</div>
+	</div>
+	<!--end wrapper-->
+	<!-- Bootstrap JS -->
+{% endblock %}

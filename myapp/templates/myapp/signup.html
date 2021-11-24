@@ -1,0 +1,116 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% comment %} {%block style %}   
+body {
+    background-size: 100% 100%;
+    color: white;
+}
+.op{
+    background:rgba(0,0,0,.6);
+    border-radius:20px;
+}
+{%endblock style%}
+{% block content %}
+{% if user.is_authenticated %}
+<center>
+        <div class="op" style="font-size:40px;">you are already logged in.<br> please logout if you want to login with another account or add a new user</div>
+        </center>
+{% else %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto op" style="margin-top: 70px">
+                <form action="{% url 'signup' %}" method="post">
+                    <h2>Sign up!</h2>
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Email</label>
+                        <div class="col-10">
+                            <input name='email' class="form-control" type="email" id="example-email-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Name</label>
+                        <div class="col-10">
+                            <input name='name' class="form-control" type="text" required>
+                        </div>
+                    </div>  
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Password</label>
+                        <div class="col-10">
+                            <input name='password' class="form-control" type="password" required>
+                        </div>
+                    </div>
+                    <p>{{error}}</p>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary float-right">Sign up</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+{%endif%}
+{% endblock %} {% endcomment %}
+
+
+{% block content %}
+<body class="bg-theme bg-theme2">
+	<!--wrapper-->
+	<div class="wrapper">
+		<div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
+			<div class="container-fluid">
+				<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+					<div class="col mx-auto">
+						<div class="mb-4 text-center">
+							<img src="{% static 'assets/images/logo-img.png'%}" width="180" alt="" />
+						</div>
+						<div class="card">
+							<div class="card-body">
+								<div class="border p-4 rounded">
+									<div class="text-center">
+										<h3 class="">Sign up</h3>
+										<p>Already have an account? <a href="signin">Sign in here</a>
+										</p>
+									</div>
+									<div class="form-body">
+										<form class="row g-3" action="{% url 'signup' %}" method="post">
+                                        {% csrf_token %}
+											<div class="col-12">
+												<label for="inputEmailAddress" class="form-label"> Email</label>
+                            <input name='email' class="form-control" type="email" id="example-email-input" required>
+											</div>
+											<div class="col-12">
+												<label for="name" class="form-label"> Name</label>
+                            <input name='name' class="form-control" type="text" required>
+                        
+											</div>
+											<div class="col-12">
+												<label for="inputChoosePassword" class="form-label">Enter Password</label>
+												<div class="input-group" id="show_hide_password">
+                            <input name='password' class="form-control" type="password" required>
+                            
+													{% comment %} <input type="password" class="form-control border-end-0" id="inputChoosePassword" value="12345678" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a> {% endcomment %}
+												</div>
+											</div>
+							
+											
+											<div class="col-12">
+												<div class="d-grid">
+													<button type="submit" class="btn btn-light"><i class="bx bxs-lock-open"></i>Sign Up</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end row-->
+			</div>
+		</div>
+	</div>
+	<!--end wrapper-->
+	<!-- Bootstrap JS -->
+{% endblock %}

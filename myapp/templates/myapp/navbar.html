@@ -1,0 +1,110 @@
+{% load static %}
+<div class="sidebar-wrapper" data-simplebar="true">
+			<div class="sidebar-header">
+				<div>
+					<img src="{% static 'assets/images/logo-icon.png'%}" class="logo-icon" alt="logo icon">
+				</div>
+				<div>
+					<h4 class="logo-text">Dashtrans</h4>
+				</div>
+				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+				</div>
+			</div>
+			<!--navigation-->
+			<ul class="metismenu" id="menu">
+            Hello {{user.username.title}}
+				<li>
+					<a href="{% url 'findbus' %}">
+						<div class="parent-icon">
+						</div>
+						<div class="menu-title">Find Bus</div>
+					</a>
+				</li>
+				
+                <li><a href="{% url 'seebookings' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">See Bookings</div></a></li>
+                <li><a href="{% url 'seeoldbookings' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">See Old Bookings</div></a></li>
+                
+                
+                
+                {% if request.user.is_active and request.user.is_superuser %}
+                <li><a href="{% url 'seealloldbookings' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">See All Old Bookings</div></a></li>
+                <li><a href="{% url 'seeallbookings' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">See All Bookings</div></a></li>
+                
+                <li><a href="{% url 'registration' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">See All Buses</div></a></li>
+                <li><a href="{% url 'bus_new' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">New Bus</div></a></li>
+                <li><a href="{% url 'user_detail' %}"><div class="parent-icon">
+						</div>
+						
+						<div class="menu-title">User Detail</div></a></li>
+                <li><a href="{% url 'bus_bookings1' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">Booked Bus Details</div></a></li>
+                <li><a href="{% url 'signout' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">Sign out</div></a></li>
+                
+                {% elif request.user.is_active %}
+                <li><a href="{% url 'user_detail' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">User Detail</div></a></li>
+                <li><a href="{% url 'signout' %}"><div class="parent-icon">
+						</div>
+						<div class="menu-title">Sign out</div></a></li>
+            
+                {% endif %}
+
+			</ul>
+			<!--end navigation-->
+		</div>
+		<!--end sidebar wrapper -->
+    
+		
+    {% comment %} <nav class="col-lg-3 navbar navbar-expand-lg navigation-bar flex-column" style="z-index:1;" >
+    <div class="" id='side-menu'>
+        <a class="navbar-brand" href="#">Hello {{user.username}}</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">=</span>
+        </button> 
+        <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+            <div class="navbar-nav nav">
+                <a class="nav-item nav-link " href="{% url 'findbus' %}">Find Bus</a>
+                <a class="nav-item nav-link" href="{% url 'seebookings' %}">See Bookings</a>
+                <a class="nav-item nav-link" href="{% url 'seeoldbookings' %}">See Old Bookings</a>
+                
+                
+                
+                {% if request.user.is_active and request.user.is_superuser %}
+                <a class="nav-item nav-link" href="{% url 'seealloldbookings' %}">See All Old Bookings</a>
+                <a class="nav-item nav-link" href="{% url 'seeallbookings' %}">See All Bookings</a>
+                
+                <a class="nav-item nav-link " href="{% url 'registration' %}">See All Buses</a>
+                <a class="nav-item nav-link " href="{% url 'bus_new' %}">New Bus</a>
+                <a class="nav-item nav-link " href="{% url 'user_detail' %}">User Detail</a>
+                <a class="nav-item nav-link " href="{% url 'bus_bookings1' %}">Booked Bus Details</a>
+                <a class="nav-item nav-link " href="{% url 'signout' %}">Sign out</a>
+                
+                {% elif request.user.is_active %}
+                <a class="nav-item nav-link " href="{% url 'user_detail' %}">User Detail</a>
+                <a class="nav-item nav-link " href="{% url 'signout' %}">Sign out</a>
+                {% else %}
+                <a class="nav-item nav-link " href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+</nav> {% endcomment %}

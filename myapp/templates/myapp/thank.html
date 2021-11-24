@@ -1,0 +1,21 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{%block style %}   
+body {
+    {% comment %} background:url({% static 'images/bus5.JPG' %}) no-repeat fixed; {% endcomment %}
+    background-size: 100% 100%;
+    color: pink;
+}{%endblock style%}
+{% block content %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <h1>Thank you for signing up!</h1>
+            </div>
+        </div>
+
+    </div>
+    
+
+{% endblock %}

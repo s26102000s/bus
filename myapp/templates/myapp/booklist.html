@@ -1,0 +1,71 @@
+{% extends 'myapp/base.html' %}
+{% load mathfilters %}
+{% block content %}
+<div class="wrapper">
+<h3>{{msg}}</h3>
+<h2>List of buses</h2>
+{% comment %} <a type="submit" class="btn btn-primary float-left" href="{% url 'seeoldbookings'%}"> Show Old bookings</a> {% endcomment %}
+<table class="op table table-striped">
+    <thead>
+    
+    <td>USER NAME</td>
+    <td>BUS NAME</td>
+    <td>SOURCE</td>
+    <td>DESTINATION</td>
+    <td>NUM OF SEATS</td>
+    {% comment %} <td>PRICE</td> {% endcomment %}
+    <td>DATE</td>
+    <td>TIME</td>
+    <td>STATUS</td>
+    <td>Cancel</td>
+    <td>Print</td>
+
+    </thead>
+    {% for row in book_list %}
+    
+    <tr>
+        
+        <td>{{row.name}}</td>
+        <td>{{row.bus_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.nos}}</td>
+        {% comment %} <td>{{row.price|mul:row.nos}}</td> {% endcomment %}
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        <td>{{row.status}}</td>
+        {% if row.status == 'BOOKED' %}
+        <td id='demo' style="display:flex;">
+        <a type="submit" class="btn btn-primary float-left" href="{% url 'cancellings' pk=row.pk%}">Cancel&nbspbus</a>
+        </td>
+        {% elif row.status == 'RESERVED' %}
+        <td id='demo' style="display:flex;">
+        <a type="submit" class="btn btn-primary float-left" href="{% url 'cancellings' pk=row.pk%}">Cancel&nbspbus</a>
+        {% comment %} <a type="submit" class="btn btn-primary float-left" href="{% url 'payment' pk=row.pk%}">Make&nbspPayment</a> {% endcomment %}
+        </td>
+        {% else %}
+        <td>CANCELLED</td>
+        {% endif %}
+        <td>
+        {% if row.status == 'BOOKED' %}
+        <a type="submit" class="btn btn-primary float-left" href="{% url 'printticket' pk=row.pk%}">print&nbspticket</a></td>
+        {% elif row.status == 'RESERVED' %}
+        
+        {% comment %} <a type="submit" class="btn btn-primary float-left" href="{% url 'cancellings' pk=row.pk%}">Cancel&nbspbus</a> {% endcomment %}
+        <a type="submit" class="btn btn-primary float-left" href="{% url 'payment' pk=row.pk%}">Make&nbspPayment</a>
+        </td>
+        {% endif %}
+    </tr>
+
+    {% endfor %}
+</table>
+{{error}}
+<script>
+var new_date=document.getElementById('demo');
+console.log(new_date);
+var date= new Date();
+console.log(date);
+</script>
+
+{% endblock %}
+

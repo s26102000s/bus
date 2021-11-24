@@ -1,0 +1,49 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{%block style %}   
+body {
+    {% comment %} background:url({% static 'images/bus6.JPG' %}) no-repeat fixed; {% endcomment %}
+    background-size: 100% 100%;
+    color: white;
+}
+.op{
+    background:rgba(0,0,0,.6);
+    border-radius:20px;
+    padding: 10px;
+}
+{%endblock style%}
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto op" style="margin-top: 70px">
+                <h2>Booked Bus tickets</h2>
+                <form action="{% url 'bus_bookings' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Bus Name</label>
+                        <div class="col-10">                        
+                        <input type='text' name='name' class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label" >Date</label>
+                        <div class="col-10">
+                            <input name='date' class="form-control" type="date">
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary float-right">submit</button>
+                    </div>
+                    {{error}}
+
+                </form>
+            </div><div class="wrapper"><div class='op'>
+            All Buses Name          
+            {% for book in b_list %}
+                <option class="form-control">{{book.bus_name}}</option>
+            {% endfor %}</div>
+        </div>
+
+    </div>
+
+{% endblock %}

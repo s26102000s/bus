@@ -1,0 +1,50 @@
+ {% extends 'myapp/base.html' %}
+
+{% block content %}
+<div class="wrapper">
+<h2>List of buses</h2>
+<table class="op table table-hover">
+    <thead>
+    {% comment %} <td>Bus id</td> {% endcomment %}
+    <td>BUS NAME</td>
+    <td>SOURCE</td>
+    <td>DESTINATION</td>
+    <td>NUM OF SEATS</td>
+    <td>NUM OF REMAINING SEATS</td>
+    <td>PRICE PER SEATS</td>
+    <td>DATE</td>
+    <td>TIME</td>
+    <td>Edit</td>
+
+
+    </thead>
+
+    {% for row in bus_list %}
+    <tr>
+        {% comment %} <td>{{row.id}}</td> {% endcomment %}
+        <td>{{row.bus_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.nos}}</td>
+        <td>{{row.rem}}</td>
+        <td>{{row.price}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+          <aside class="actions">
+    {% if user.is_authenticated and user.is_superuser %}
+    <td><a class="btn btn-default" href="{% url 'bus_edit' pk=row.id %}">
+      edit
+    </a></td>
+    {% endif %}
+</aside>
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}
+
+  

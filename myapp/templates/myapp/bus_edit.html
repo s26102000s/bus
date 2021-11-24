@@ -1,0 +1,204 @@
+{% extends 'myapp/base.html' %}
+{% load mathfilters %}
+{% load widget_tweaks %}
+{% load static %}
+{% comment %} {%block style %}   
+body {
+    background-size: 100% 100%;
+    color: white;
+}
+.op{
+    background:rgba(0,0,0,.6);
+    border-radius:20px;
+    padding:10px;
+}
+{%endblock style%}
+
+{% block content %}
+    <h2></h2>
+
+		  <div id="container">
+      <div class="page">
+<form  id="admloginform" method="post" enctype="multipart/form-data" >
+{% csrf_token %}
+            <div id="page-wrapper">
+
+            <div class="row ">
+                <div class="col-lg-12 ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+     
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-left:-10px">
+                                <div class="col-lg-3"></div>
+                                <div class=" op col-lg-6 pb-4">
+                           <center>
+                            Register New bus
+                            </center>
+<br>
+                                        <div class="form-group">
+                                        <div class='row'>
+                                        <div class="col-4">
+                                            <label>Bus Name</label>
+                                            </div><div class="col-8">
+                                            {% render_field form.bus_name class="form-control"%}
+                                            </div></div>
+                                        </div>
+                                        <div class="form-group">
+                                        <div class='row'>
+                                        <div class="col-4">
+                                            <label>From</label>
+                                            </div><div class="col-8">
+                                            {% render_field form.source class="form-control"%}
+                                            </div></div>
+                                        </div>
+                                        <div class="form-group">
+                                        <div class='row'>
+                                        <div class="col-4">
+                                            <label>To</label></div><div class="col-8">
+                                            {% render_field form.dest class="form-control"%}
+
+                                        </div></div></div>
+                                       <div class="form-group"><div class='row'>
+                                        <div class="col-4">
+                                            <label>Date</label></div><div class="col-8">
+                                            {% render_field form.date type='date' class="form-control" %}
+                                            </div></div></div>
+                                         <div class="form-group"><div class='row'>
+                                        <div class="col-4">
+                                            <label>Time</label></div><div class="col-8">
+                                            {% render_field form.time type='time' class="form-control"%}
+                                            </div></div></div>
+                                            <div class="form-group"><div class='row'>
+                                        <div class="col-4">
+                                         
+                                            <label>No. of Seats</label></div><div class="col-8">
+                                            {% render_field form.nos class="form-control"%}
+
+                                        </div></div></div>
+                                          <div class="form-group"><div class='row'>
+                                        <div class="col-4"> <label>Remaining Seats</label></div><div class="col-8">
+                                            {% render_field form.rem class="form-control"%}
+
+                                        </div></div></div>
+                                        <div class="form-group"> <div class='row'>
+                                        <div class="col-4"><label>Price</label>
+                                        </div><div class="col-8">
+                                           {% render_field form.price class="form-control"%}
+
+                                                                                        
+
+                                        </div></div></div>
+                                       
+                                        <button type="submit" class="save btn btn-default float-right pl-4 pr-4" style="">Save</button>
+                                    
+                                    <div class="col-lg-3"></div>
+
+                            </div>
+                             
+                        </div>
+                      
+                    </div>
+                   
+                </div>
+               
+            </div>
+           
+        </div></form>
+
+
+
+{{error}}
+
+
+        
+    
+{% endblock content %} {% endcomment %}
+
+
+
+{% block content %}
+<body class="bg-theme bg-theme2">
+	<!--wrapper-->
+	<div class="wrapper">
+		<div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
+			<div class="container-fluid">
+				<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+					<div class="col mx-auto">
+						<div class="mb-4 text-center">
+							<img src="{% static 'assets/images/logo-img.png'%}" width="180" alt="" />
+						</div>
+						<div class="card">
+							<div class="card-body">
+								<div class="border p-4 rounded">
+								
+									<div class="form-body">
+										<form class="row g-3" action="" method="post">
+                                        {% csrf_token %}
+											<div class="col-12">
+												<label for="inputEmailAddress" class="form-label"> Bus Name</label>
+                                            {% render_field form.bus_name class="form-control"%}
+
+											</div>
+											<div class="col-12">
+												<label for="inputEmailAddress" class="form-label"> Source</label>
+                                            {% render_field form.source class="form-control"%}
+                            </div>
+											<div class="col-12">
+												<label for="name" class="form-label"> Destination</label>
+                                            {% render_field form.dest class="form-control"%}
+                            
+                        
+											</div>
+											<div class="col-12">
+												<label for="" class="form-label">Date</label>
+												<div class="input-group">
+                                            {% render_field form.date type='date' class="form-control" %}
+                            					</div>
+											</div>
+											<div class="col-12">
+												<label for="" class="form-label">Time</label>
+												<div class="input-group">
+                                            {% render_field form.time type='time' class="form-control" %}
+                            					</div>
+											</div>
+											<div class="col-12">
+												<label for="" class="form-label">No. of Seats</label>
+												<div class="input-group">
+                                            {% render_field form.nos class="form-control" %}
+                            					</div>
+											</div>
+											<div class="col-12">
+												<label for="" class="form-label">Remaining Seats</label>
+												<div class="input-group">
+                                            {% render_field form.rem class="form-control" %}
+                            					</div>
+											</div>
+											<div class="col-12">
+												<label for="" class="form-label">Price</label>
+												<div class="input-group">
+                                            {% render_field form.price class="form-control" %}
+                            					</div>
+											</div>
+							
+											
+											<div class="col-12">
+												<div class="d-grid">
+													<button type="submit" class="btn btn-light"><i class=""></i>Find bus</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end row-->
+			</div>
+		</div>
+	</div>
+	<!--end wrapper-->
+	<!-- Bootstrap JS -->
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'myapp/base.html' %}
+{% load mathfilters %}
+{% block content %}
+<div class="wrapper">
+<h3>{{msg}}</h3>
+<h2>List of buses</h2>
+
+
+<table class="op table table-striped table-hover">
+    <thead>
+    <td>ID</td>
+    <td>NAME</td>
+    <td>SOURCE</td>
+    <td>DESTINATION</td>
+    <td>NUM&nbspOF&nbspSEATS</td>
+    <td>PRICE</td>
+    <td>DATE</td>
+    <td>TIME</td>
+    <td>Enter&nbspno.of&nbspSeats&nbsprequired</td>
+    </thead>
+
+    {% for row in bus_list %}
+    <tr>
+        <td>{{row.id }}</td>
+        <td>{{row.bus_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        
+        <td>{{row.rem |add:-1}}</td>
+        <td>{{row.price}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        
+        <form action="{% url 'bookings' pk=row.pk %}" method="post">
+           {% csrf_token %}
+            <td><input name='seats' class="form-control" type="Number"></td>
+            <td><button type="submit" class="btn btn-primary float-left">Book bus</button></td>
+        </form>
+        
+{{error}}
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'myapp/base.html' %}
+{% load mathfilters %}
+{% block content %}
+<h3>{{msg}}</h3>
+{% comment %} <a type="submit" class="btn btn-primary float-left" href="{% url 'seeoldbookings'%}"> Show Old bookings</a> {% endcomment %}
+<div style='float:right'><input type="button" onclick="printDiv('printableArea')" class="btn" value="print page!" /><script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script><br><br></div>
+<div  id='printableArea'>
+<table class="op table table-striped">
+    <thead>
+    
+    <td>USER NAME</td>
+    <td>BUS NAME</td>
+    <td>SOURCE</td>
+    <td>DESTINATION</td>
+    <td>NUM OF SEATS</td>
+    {% comment %} <td>PRICE</td> {% endcomment %}
+    <td>DATE</td>
+    <td>TIME</td>
+    <td>STATUS</td>
+    <td>Print</td>
+
+    </thead>
+    {% for row in book_list %}
+    
+    <tr>
+        
+        <td>{{row.name}}</td>
+        <td>{{row.bus_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.nos}}</td>
+        {% comment %} <td>{{row.price|mul:row.nos}}</td> {% endcomment %}
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        <td>{{row.status}}</td>
+        <td><a type="submit" class="btn btn-primary float-left" href="{% url 'printticket' pk=row.pk%}">print&nbspticket</a></td>
+
+    </tr>
+
+    {% endfor %}
+    {% for row in book_list1 %}
+    
+    <tr>
+        
+        <td>{{row.name}}</td>
+        <td>{{row.bus_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.nos}}</td>
+        <td>{{row.price|mul:row.nos}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        <td>{{row.status}}</td>
+        <td><a type="submit" class="btn btn-primary float-left" href="{% url 'printticket' pk=row.pk%}">print&nbspticket</a></td>
+
+    </tr>
+
+    {% endfor %}
+</table>
+</div>
+{{error}}
+<script>
+var new_date=document.getElementById('demo');
+console.log(new_date);
+var date= new Date();
+console.log(date);
+</script>
+<script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
+
+{% endblock %}
+

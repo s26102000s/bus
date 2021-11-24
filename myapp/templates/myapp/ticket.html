@@ -1,0 +1,46 @@
+{% extends 'myapp/base.html' %}
+{%load mathfilters%}
+{%block style %}
+body{
+background:white
+}
+{%endblock style%}
+{% block content %}
+<div id="printableArea">
+<div class='container'>
+<div class='row'>
+<div class='col-md-3'></div>
+<div class='col-md-6' style='background:yellow; border-radius:30px;'>
+
+    {% for book in books %}
+        <ul class="list-group list-group-flush">
+        <div class='row'><div class='col-md-6' style='background:yellow; border-radius:30px;'>
+            <br><li class="list-group-item" style='background:#BCA; border-radius:30px;'><b>Bus name:</b> {{book.bus_name}}</li>
+            <br><li class="list-group-item" style='background:lightgreen; border-radius:30px;'><b>Starting point:</b> {{book.source}}</li>
+            <br><li class="list-group-item" style='background:#FAE; border-radius:30px;'><b>Destination point:</b> {{book.dest}}</li>
+            <br><li class="list-group-item" style='background:#EBF; border-radius:30px;'><b>Number of seats:</b> {{book.nos}}</li>
+            <br><li class="list-group-item" style='background:#36D; border-radius:30px;'><b>Price:</b> {{book.price}}</li><br></div><div class='col-md-6'>
+            <br><li class="list-group-item" style='background:#DEF; border-radius:30px;'><b>Status:</b> {{book.status.title}}</li>
+            <br><li class="list-group-item" style='background:#AAA; border-radius:30px;'><b>Cost:</b> <span id='totalPrice'>{{book.nos|mul:book.price}}</span></li>
+            <br><li class="list-group-item" style='background:#B79; border-radius:30px;'><b>Date:</b> {{book.date}}</li>
+            <br><li class="list-group-item" style='background:#AFF; border-radius:30px;'><b>Time:</b> {{book.time}}</li><br>
+            </div><br></div>
+        </ul>
+    {% endfor %}
+    </div>
+<div class='col-md-3'></div></div></div>
+</div>
+<input type="button" onclick="printDiv('printableArea')" class="btn" value="print ticket!" />
+<script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
+{%endblock%}
